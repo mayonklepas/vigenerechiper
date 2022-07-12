@@ -50,7 +50,7 @@ public class Vigenerechipper {
         
         //membuat key
         while (start) {
-            if (ii == prekey.length() - 1) {
+            if (ii == prekey.length()) {
                 ii = 0;
             } else {
                 char ckey = prekey.charAt(ii);
@@ -74,9 +74,11 @@ public class Vigenerechipper {
             char ckey = key.charAt(i);
             int posisikata = abjad.indexOf(ckata);
             int posisikey = abjad.indexOf(ckey);
-            //System.out.print(posisikata+"+"+posisikey+"=");
-            //System.out.print(posisikata+posisikey+" ");
-            char chipper = abjad.charAt(posisikata + posisikey);
+            int posisichipper = posisikata+posisikey;
+            if(posisichipper > abjad.length()){
+                posisichipper=posisichipper-abjad.length();
+            }
+            char chipper = abjad.charAt(posisichipper);
             sbchipper.append(chipper);
         }
 
@@ -92,9 +94,11 @@ public class Vigenerechipper {
             char deckey = key.charAt(i);
             int posisidchip = abjad.indexOf(dechip);
             int posisidkey = abjad.indexOf(deckey);
-           // System.out.print(posisidchip+"-"+posisidkey+"=");
-            //System.out.print(posisidchip-posisidkey+" ");
-            char dechipper = abjad.charAt(posisidchip - posisidkey);
+            int posisidechipper = posisidchip+posisidkey;
+            if(posisidechipper < 0){
+                posisidechipper=posisidechipper+abjad.length();
+            }
+            char dechipper = abjad.charAt(posisidechipper);
             sbdechip.append(dechipper);
         }
         System.out.println("decrypt");
